@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
-const app = express();
+import { app , server } from './src/lib/socket.js';
 import cookieParser from 'cookie-parser';
 import authRoute from './src/routes/auth.route.js';
 import msgRoute from './src/routes/message.route.js';
@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRoute);
 app.use('/api/msg', msgRoute);
 
-app.listen(PORT, async () => {
+server.listen(PORT, async () => {
     console.log(`http://localhost:${PORT}`);
     await connectDB();
 });
